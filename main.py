@@ -32,8 +32,9 @@ if __name__ == '__main__':
 
     results = StringIO()
     count = 0
-
     results.write(f'{count:04d} โกวาจี\n')
+    count += 1
+    results.write(f'{count:04d} โกวาจี เริ่ม เกม\n')
     count += 1
 
     for s in sentences:
