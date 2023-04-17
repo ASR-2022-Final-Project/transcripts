@@ -41,5 +41,5 @@ t
 
     print(results.getvalue())
 
-    with open('transcripts.txt', 'w') as f:
+    with open('transcripts.txt', 'w', encoding='utf8') as f:
         f.write(results.getvalue())
