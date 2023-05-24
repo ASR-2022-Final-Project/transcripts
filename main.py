@@ -1,4 +1,9 @@
 from io import StringIO
+from pythainlp import word_tokenize
+
+def get_tokenized_string(s):
+    s = "".join(s.split())
+    return " ".join(word_tokenize(s, engine="newmm"))
 
 if __name__ == '__main__':
     locations = ['ห้องนั่งเล่น', 'ห้องนอน', 'ห้องน้ำ', 'ห้องครัว', 'สวนหลังบ้าน']
@@ -41,18 +46,18 @@ if __name__ == '__main__':
         if 'l' in s and 't' in s:
             for loc in locations:
                 for topic in topics:
-                    results.write(f'{count:04d} {s.replace("l", loc).replace("t", topic)}\n')
+                    results.write(f'{count:04d} {get_tokenized_string(s.replace("l", loc).replace("t", topic))}\n')
                     count += 1
         elif 'l' in s:
             for loc in locations:
-                results.write(f'{count:04d} {s.replace("l", loc)}\n')
+                results.write(f'{count:04d} {get_tokenized_string(s.replace("l", loc))}\n')
                 count += 1
         elif 't' in s:
             for topic in topics:
-                results.write(f'{count:04d} {s.replace("t", topic)}\n')
+                results.write(f'{count:04d} {get_tokenized_string(s.replace("t", topic))}\n')
                 count += 1
         else:
-            results.write(f'{count:04d} {s}\n')
+            results.write(f'{count:04d} {get_tokenized_string(s)}\n')
             count += 1
 
     print(results.getvalue())
